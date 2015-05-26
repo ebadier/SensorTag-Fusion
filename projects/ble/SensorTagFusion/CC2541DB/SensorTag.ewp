@@ -10,23 +10,11 @@
     <debug>0</debug>
     <settings>
       <name>General</name>
-      <archiveVersion>1</archiveVersion>
+      <archiveVersion>3</archiveVersion>
       <data>
-        <version>6</version>
+        <version>8</version>
         <wantNonLocal>1</wantNonLocal>
         <debug>0</debug>
-        <option>
-          <name>DerivativeDescriptionFile</name>
-          <state>$TOOLKIT_DIR$\config\devices\Texas Instruments\CC2541F256.i51</state>
-        </option>
-        <option>
-          <name>Previous Derivative File</name>
-          <state>$TOOLKIT_DIR$\config\devices\Texas Instruments\CC2541F256.i51</state>
-        </option>
-        <option>
-          <name>Showed Derivative</name>
-          <state>CC2541F256</state>
-        </option>
         <option>
           <name>CPU Core</name>
           <version>1</version>
@@ -262,13 +250,41 @@
           <name>Extended stack is offset</name>
           <state>0</state>
         </option>
+        <option>
+          <name>OGChipSelectMenu</name>
+          <state>CC2541F256	CC2541F256</state>
+        </option>
+        <option>
+          <name>OGChipSelectMenuSlave</name>
+          <state>CC2541F256	CC2541F256</state>
+        </option>
+        <option>
+          <name>DPC Address</name>
+          <state></state>
+        </option>
+        <option>
+          <name>AutoModificationType</name>
+          <state></state>
+        </option>
+        <option>
+          <name>UseHWMulDivUnit</name>
+          <state>0</state>
+        </option>
+        <option>
+          <name>UseMDU</name>
+          <state></state>
+        </option>
+        <option>
+          <name>AdditionalDriver</name>
+          <state></state>
+        </option>
       </data>
     </settings>
     <settings>
       <name>ICC8051</name>
-      <archiveVersion>5</archiveVersion>
+      <archiveVersion>6</archiveVersion>
       <data>
-        <version>10</version>
+        <version>11</version>
         <wantNonLocal>1</wantNonLocal>
         <debug>0</debug>
         <option>
@@ -478,6 +494,7 @@
           <state>$PROJ_DIR$\..\..\Profiles\SensorProfile</state>
           <state>$PROJ_DIR$\..\..\Profiles\Keys</state>
           <state>$PROJ_DIR$\..\..\Profiles\DevInfo</state>
+          <state>$PROJ_DIR$\..\..\common\Include</state>
         </option>
         <option>
           <name>CCStdIncCheck</name>
@@ -549,6 +566,10 @@
         <option>
           <name>NoSizeConstraints</name>
           <state>0</state>
+        </option>
+        <option>
+          <name>UseHWMulDivUnit</name>
+          <state>1</state>
         </option>
       </data>
     </settings>
@@ -712,6 +733,7 @@
       <data>
         <extensions></extensions>
         <cmdline></cmdline>
+        <hasPrio>0</hasPrio>
       </data>
     </settings>
     <settings>
@@ -729,9 +751,9 @@
     </settings>
     <settings>
       <name>XLINK</name>
-      <archiveVersion>3</archiveVersion>
+      <archiveVersion>4</archiveVersion>
       <data>
-        <version>18</version>
+        <version>21</version>
         <wantNonLocal>1</wantNonLocal>
         <debug>0</debug>
         <option>
@@ -1051,6 +1073,30 @@
           <version>0</version>
           <state>0</state>
         </option>
+        <option>
+          <name>XLink DPC Address</name>
+          <state>1</state>
+        </option>
+        <option>
+          <name>XlinkLogEnable</name>
+          <state>0</state>
+        </option>
+        <option>
+          <name>XlinkLogInputFiles</name>
+          <state>0</state>
+        </option>
+        <option>
+          <name>XlinkLogModuleSelection</name>
+          <state>0</state>
+        </option>
+        <option>
+          <name>XlinkLogPrintfScanf</name>
+          <state>0</state>
+        </option>
+        <option>
+          <name>XlinkLogSegmentSelection</name>
+          <state>0</state>
+        </option>
       </data>
     </settings>
     <settings>
@@ -1079,6 +1125,11 @@
       </data>
     </settings>
     <settings>
+      <name>HWMUL</name>
+      <archiveVersion>0</archiveVersion>
+      <data/>
+    </settings>
+    <settings>
       <name>BILINK</name>
       <archiveVersion>0</archiveVersion>
       <data/>
@@ -1092,23 +1143,11 @@
     <debug>0</debug>
     <settings>
       <name>General</name>
-      <archiveVersion>1</archiveVersion>
+      <archiveVersion>3</archiveVersion>
       <data>
-        <version>6</version>
+        <version>8</version>
         <wantNonLocal>1</wantNonLocal>
         <debug>0</debug>
-        <option>
-          <name>DerivativeDescriptionFile</name>
-          <state>$TOOLKIT_DIR$\config\devices\Texas Instruments\CC2541F256.i51</state>
-        </option>
-        <option>
-          <name>Previous Derivative File</name>
-          <state>$TOOLKIT_DIR$\config\devices\Texas Instruments\CC2541F256.i51</state>
-        </option>
-        <option>
-          <name>Showed Derivative</name>
-          <state>CC2541F256</state>
-        </option>
         <option>
           <name>CPU Core</name>
           <version>1</version>
@@ -1344,13 +1383,41 @@
           <name>Extended stack is offset</name>
           <state>0</state>
         </option>
+        <option>
+          <name>OGChipSelectMenu</name>
+          <state>CC2541F256	CC2541F256</state>
+        </option>
+        <option>
+          <name>OGChipSelectMenuSlave</name>
+          <state>CC2541F256	CC2541F256</state>
+        </option>
+        <option>
+          <name>DPC Address</name>
+          <state></state>
+        </option>
+        <option>
+          <name>AutoModificationType</name>
+          <state></state>
+        </option>
+        <option>
+          <name>UseHWMulDivUnit</name>
+          <state>0</state>
+        </option>
+        <option>
+          <name>UseMDU</name>
+          <state></state>
+        </option>
+        <option>
+          <name>AdditionalDriver</name>
+          <state></state>
+        </option>
       </data>
     </settings>
     <settings>
       <name>ICC8051</name>
-      <archiveVersion>5</archiveVersion>
+      <archiveVersion>6</archiveVersion>
       <data>
-        <version>10</version>
+        <version>11</version>
         <wantNonLocal>1</wantNonLocal>
         <debug>0</debug>
         <option>
@@ -1565,6 +1632,7 @@
           <state>$PROJ_DIR$\..\..\Profiles\Keys</state>
           <state>$PROJ_DIR$\..\..\Profiles\DevInfo</state>
           <state>$PROJ_DIR$\..\..\Profiles\Oad</state>
+          <state>$PROJ_DIR$\..\..\common\Include</state>
         </option>
         <option>
           <name>CCStdIncCheck</name>
@@ -1636,6 +1704,10 @@
         <option>
           <name>NoSizeConstraints</name>
           <state>0</state>
+        </option>
+        <option>
+          <name>UseHWMulDivUnit</name>
+          <state>1</state>
         </option>
       </data>
     </settings>
@@ -1799,6 +1871,7 @@
       <data>
         <extensions></extensions>
         <cmdline></cmdline>
+        <hasPrio>0</hasPrio>
       </data>
     </settings>
     <settings>
@@ -1816,9 +1889,9 @@
     </settings>
     <settings>
       <name>XLINK</name>
-      <archiveVersion>3</archiveVersion>
+      <archiveVersion>4</archiveVersion>
       <data>
-        <version>18</version>
+        <version>21</version>
         <wantNonLocal>1</wantNonLocal>
         <debug>0</debug>
         <option>
@@ -2138,6 +2211,30 @@
           <version>0</version>
           <state>0</state>
         </option>
+        <option>
+          <name>XLink DPC Address</name>
+          <state>1</state>
+        </option>
+        <option>
+          <name>XlinkLogEnable</name>
+          <state>0</state>
+        </option>
+        <option>
+          <name>XlinkLogInputFiles</name>
+          <state>0</state>
+        </option>
+        <option>
+          <name>XlinkLogModuleSelection</name>
+          <state>0</state>
+        </option>
+        <option>
+          <name>XlinkLogPrintfScanf</name>
+          <state>0</state>
+        </option>
+        <option>
+          <name>XlinkLogSegmentSelection</name>
+          <state>0</state>
+        </option>
       </data>
     </settings>
     <settings>
@@ -2166,6 +2263,11 @@
       </data>
     </settings>
     <settings>
+      <name>HWMUL</name>
+      <archiveVersion>0</archiveVersion>
+      <data/>
+    </settings>
+    <settings>
       <name>BILINK</name>
       <archiveVersion>0</archiveVersion>
       <data/>
@@ -2179,23 +2281,11 @@
     <debug>0</debug>
     <settings>
       <name>General</name>
-      <archiveVersion>1</archiveVersion>
+      <archiveVersion>3</archiveVersion>
       <data>
-        <version>6</version>
+        <version>8</version>
         <wantNonLocal>1</wantNonLocal>
         <debug>0</debug>
-        <option>
-          <name>DerivativeDescriptionFile</name>
-          <state>$TOOLKIT_DIR$\config\devices\Texas Instruments\CC2541F256.i51</state>
-        </option>
-        <option>
-          <name>Previous Derivative File</name>
-          <state>$TOOLKIT_DIR$\config\devices\Texas Instruments\CC2541F256.i51</state>
-        </option>
-        <option>
-          <name>Showed Derivative</name>
-          <state>CC2541F256</state>
-        </option>
         <option>
           <name>CPU Core</name>
           <version>1</version>
@@ -2431,13 +2521,41 @@
           <name>Extended stack is offset</name>
           <state>0</state>
         </option>
+        <option>
+          <name>OGChipSelectMenu</name>
+          <state>CC2541F256	CC2541F256</state>
+        </option>
+        <option>
+          <name>OGChipSelectMenuSlave</name>
+          <state>CC2541F256	CC2541F256</state>
+        </option>
+        <option>
+          <name>DPC Address</name>
+          <state></state>
+        </option>
+        <option>
+          <name>AutoModificationType</name>
+          <state></state>
+        </option>
+        <option>
+          <name>UseHWMulDivUnit</name>
+          <state>0</state>
+        </option>
+        <option>
+          <name>UseMDU</name>
+          <state></state>
+        </option>
+        <option>
+          <name>AdditionalDriver</name>
+          <state></state>
+        </option>
       </data>
     </settings>
     <settings>
       <name>ICC8051</name>
-      <archiveVersion>5</archiveVersion>
+      <archiveVersion>6</archiveVersion>
       <data>
-        <version>10</version>
+        <version>11</version>
         <wantNonLocal>1</wantNonLocal>
         <debug>0</debug>
         <option>
@@ -2652,6 +2770,7 @@
           <state>$PROJ_DIR$\..\..\Profiles\Keys</state>
           <state>$PROJ_DIR$\..\..\Profiles\DevInfo</state>
           <state>$PROJ_DIR$\..\..\Profiles\Oad</state>
+          <state>$PROJ_DIR$\..\..\common\Include</state>
         </option>
         <option>
           <name>CCStdIncCheck</name>
@@ -2723,6 +2842,10 @@
         <option>
           <name>NoSizeConstraints</name>
           <state>0</state>
+        </option>
+        <option>
+          <name>UseHWMulDivUnit</name>
+          <state>1</state>
         </option>
       </data>
     </settings>
@@ -2886,6 +3009,7 @@
       <data>
         <extensions></extensions>
         <cmdline></cmdline>
+        <hasPrio>0</hasPrio>
       </data>
     </settings>
     <settings>
@@ -2903,9 +3027,9 @@
     </settings>
     <settings>
       <name>XLINK</name>
-      <archiveVersion>3</archiveVersion>
+      <archiveVersion>4</archiveVersion>
       <data>
-        <version>18</version>
+        <version>21</version>
         <wantNonLocal>1</wantNonLocal>
         <debug>0</debug>
         <option>
@@ -3225,6 +3349,30 @@
           <version>0</version>
           <state>0</state>
         </option>
+        <option>
+          <name>XLink DPC Address</name>
+          <state>1</state>
+        </option>
+        <option>
+          <name>XlinkLogEnable</name>
+          <state>0</state>
+        </option>
+        <option>
+          <name>XlinkLogInputFiles</name>
+          <state>0</state>
+        </option>
+        <option>
+          <name>XlinkLogModuleSelection</name>
+          <state>0</state>
+        </option>
+        <option>
+          <name>XlinkLogPrintfScanf</name>
+          <state>0</state>
+        </option>
+        <option>
+          <name>XlinkLogSegmentSelection</name>
+          <state>0</state>
+        </option>
       </data>
     </settings>
     <settings>
@@ -3251,6 +3399,11 @@
           <state>###Uninitialized###</state>
         </option>
       </data>
+    </settings>
+    <settings>
+      <name>HWMUL</name>
+      <archiveVersion>0</archiveVersion>
+      <data/>
     </settings>
     <settings>
       <name>BILINK</name>
@@ -3347,6 +3500,9 @@
         </file>
         <file>
           <name>$PROJ_DIR$\..\..\..\..\Components\hal\target\CC2541ST\hal_bar.c</name>
+          <excluded>
+            <configuration>CC2541DK-Sensor-OAD-ImgB</configuration>
+          </excluded>
         </file>
         <file>
           <name>$PROJ_DIR$\..\..\..\..\Components\hal\target\CC2541ST\hal_crc.c</name>
@@ -3362,6 +3518,9 @@
         </file>
         <file>
           <name>$PROJ_DIR$\..\..\..\..\Components\hal\target\CC2541ST\hal_humi.c</name>
+          <excluded>
+            <configuration>CC2541DK-Sensor-OAD-ImgB</configuration>
+          </excluded>
         </file>
         <file>
           <name>$PROJ_DIR$\..\..\..\..\Components\hal\target\CC2541ST\hal_i2c.c</name>
@@ -3371,6 +3530,9 @@
         </file>
         <file>
           <name>$PROJ_DIR$\..\..\..\..\Components\hal\target\CC2541ST\hal_irtemp.c</name>
+          <excluded>
+            <configuration>CC2541DK-Sensor-OAD-ImgB</configuration>
+          </excluded>
         </file>
         <file>
           <name>$PROJ_DIR$\..\..\..\..\Components\hal\target\CC2541ST\hal_keys.c</name>
@@ -3404,6 +3566,9 @@
         </file>
         <file>
           <name>$PROJ_DIR$\..\..\..\..\Components\hal\target\CC2541ST\hal_bar.h</name>
+          <excluded>
+            <configuration>CC2541DK-Sensor-OAD-ImgB</configuration>
+          </excluded>
         </file>
         <file>
           <name>$PROJ_DIR$\..\..\..\..\Components\hal\target\CC2541ST\hal_dma.h</name>
@@ -3413,12 +3578,18 @@
         </file>
         <file>
           <name>$PROJ_DIR$\..\..\..\..\Components\hal\target\CC2541ST\hal_humi.h</name>
+          <excluded>
+            <configuration>CC2541DK-Sensor-OAD-ImgB</configuration>
+          </excluded>
         </file>
         <file>
           <name>$PROJ_DIR$\..\..\..\..\Components\hal\target\CC2541ST\hal_i2c.h</name>
         </file>
         <file>
           <name>$PROJ_DIR$\..\..\..\..\Components\hal\target\CC2541ST\hal_irtemp.h</name>
+          <excluded>
+            <configuration>CC2541DK-Sensor-OAD-ImgB</configuration>
+          </excluded>
         </file>
         <file>
           <name>$PROJ_DIR$\..\..\..\..\Components\hal\target\CC2541ST\hal_keys.h</name>
@@ -3496,9 +3667,15 @@
     </file>
     <file>
       <name>$PROJ_DIR$\..\..\Profiles\SensorProfile\barometerservice.c</name>
+      <excluded>
+        <configuration>CC2541DK-Sensor-OAD-ImgB</configuration>
+      </excluded>
     </file>
     <file>
       <name>$PROJ_DIR$\..\..\Profiles\SensorProfile\barometerservice.h</name>
+      <excluded>
+        <configuration>CC2541DK-Sensor-OAD-ImgB</configuration>
+      </excluded>
     </file>
     <file>
       <name>$PROJ_DIR$\..\..\Profiles\SensorProfile\ccservice.c</name>
@@ -3538,15 +3715,27 @@
     </file>
     <file>
       <name>$PROJ_DIR$\..\..\Profiles\SensorProfile\humidityservice.c</name>
+      <excluded>
+        <configuration>CC2541DK-Sensor-OAD-ImgB</configuration>
+      </excluded>
     </file>
     <file>
       <name>$PROJ_DIR$\..\..\Profiles\SensorProfile\humidityservice.h</name>
+      <excluded>
+        <configuration>CC2541DK-Sensor-OAD-ImgB</configuration>
+      </excluded>
     </file>
     <file>
       <name>$PROJ_DIR$\..\..\Profiles\SensorProfile\irtempservice.c</name>
+      <excluded>
+        <configuration>CC2541DK-Sensor-OAD-ImgB</configuration>
+      </excluded>
     </file>
     <file>
       <name>$PROJ_DIR$\..\..\Profiles\SensorProfile\irtempservice.h</name>
+      <excluded>
+        <configuration>CC2541DK-Sensor-OAD-ImgB</configuration>
+      </excluded>
     </file>
     <file>
       <name>$PROJ_DIR$\..\..\Profiles\SensorProfile\magnetometerservice.c</name>
