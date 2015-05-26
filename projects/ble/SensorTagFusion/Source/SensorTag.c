@@ -114,7 +114,7 @@
 #define MAG_DEFAULT_PERIOD                    2000
 #define ACC_DEFAULT_PERIOD                    1000
 #define GYRO_DEFAULT_PERIOD                   1000
-#define QUAT_DEFAULT_PERIOD                   4
+#define QUAT_DEFAULT_PERIOD                   10//4
 
 // Constants for two-stage reading
 #define TEMP_MEAS_DELAY                       275   // Conversion time 250 ms
