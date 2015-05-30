@@ -41,7 +41,7 @@
 *                                          Includes
 * ------------------------------------------------------------------------------------------------
 */
-#include "hal_bar.h"
+//#include "hal_bar.h"
 #include "hal_sensor.h"
 #include "hal_i2c.h"
 

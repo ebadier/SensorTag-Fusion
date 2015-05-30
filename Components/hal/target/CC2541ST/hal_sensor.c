@@ -44,9 +44,9 @@
 #include "hal_sensor.h"
 #include "hal_i2c.h"
 #include "hal_led.h"
-#include "hal_irtemp.h"
-#include "hal_humi.h"
-#include "hal_bar.h"
+//#include "hal_irtemp.h"
+//#include "hal_humi.h"
+//#include "hal_bar.h"
 #include "hal_mag.h"
 #include "hal_acc.h"
 #include "hal_gyro.h"
@@ -145,12 +145,12 @@ uint16 HalSensorTest(void)
     HalLedSet(HAL_LED_2,HAL_LED_MODE_TOGGLE);
 
     // 1. Temp sensor test
-    if (HalIRTempTest())
-      selfTestResult |= ST_IRTEMP;
+//    if (HalIRTempTest())
+//      selfTestResult |= ST_IRTEMP;
 
     // 2. Humidity  sensor test
-    if (HalHumiTest())
-      selfTestResult |= ST_HUMID;
+//    if (HalHumiTest())
+//      selfTestResult |= ST_HUMID;
 
     // 3. Magnetometer test
     if (HalMagTest())
@@ -161,8 +161,8 @@ uint16 HalSensorTest(void)
       selfTestResult |= ST_ACC;
 
     // 5. Barometer test
-    if (HalBarTest())
-      selfTestResult |= ST_PRESS;
+//    if (HalBarTest())
+//      selfTestResult |= ST_PRESS;
 
     // 6. Gyro test
     if (HalGyroTest())

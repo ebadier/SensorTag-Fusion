@@ -73,11 +73,11 @@
 // Services
 #include "st_util.h"
 #include "devinfoservice-st.h"
-#include "irtempservice.h"
+//#include "irtempservice.h"
 #include "accelerometerservice.h"
-#include "humidityservice.h"
+//#include "humidityservice.h"
 #include "magnetometerservice.h"
-#include "barometerservice.h"
+//#include "barometerservice.h"
 #include "gyroservice.h"
 #include "quaternionservice.h"
 #include "testservice.h"
@@ -88,11 +88,11 @@
 #include "sensorTag.h"
 #include "hal_sensor.h"
 
-#include "hal_irtemp.h"
+//#include "hal_irtemp.h"
 #include "hal_acc.h"
-#include "hal_humi.h"
+//#include "hal_humi.h"
 #include "hal_mag.h"
-#include "hal_bar.h"
+//#include "hal_bar.h"
 #include "hal_gyro.h"
 
 #include "AHRS.h"
@@ -244,25 +244,25 @@ static uint8 advertData[] =
 static uint8 attDeviceName[] = "TI BLE Sensor Tag";
 
 // Sensor State Variables
-static bool   irTempEnabled = FALSE;
+//static bool   irTempEnabled = FALSE;
 static bool   magEnabled = FALSE;
 static uint8  accConfig = ST_CFG_SENSOR_DISABLE;
-static bool   barEnabled = FALSE;
-static bool   humiEnabled = FALSE;
+//static bool   barEnabled = FALSE;
+//static bool   humiEnabled = FALSE;
 static bool   gyroEnabled = FALSE;
 static bool   quatEnabled = FALSE;
 
 
-static bool   barBusy = FALSE;
-static uint8  humiState = 0;
+//static bool   barBusy = FALSE;
+//static uint8  humiState = 0;
 
 static bool   sysResetRequest = FALSE;
 
 static uint16 sensorMagPeriod = MAG_DEFAULT_PERIOD;
 static uint16 sensorAccPeriod = ACC_DEFAULT_PERIOD;
-static uint16 sensorTmpPeriod = TEMP_DEFAULT_PERIOD;
-static uint16 sensorHumPeriod = HUM_DEFAULT_PERIOD;
-static uint16 sensorBarPeriod = BAR_DEFAULT_PERIOD;
+//static uint16 sensorTmpPeriod = TEMP_DEFAULT_PERIOD;
+//static uint16 sensorHumPeriod = HUM_DEFAULT_PERIOD;
+//static uint16 sensorBarPeriod = BAR_DEFAULT_PERIOD;
 static uint16 sensorGyrPeriod = GYRO_DEFAULT_PERIOD;
 static uint16 sensorQuatPeriod = QUAT_DEFAULT_PERIOD;
 
@@ -277,21 +277,21 @@ static bool   testMode = FALSE;
 static void sensorTag_ProcessOSALMsg( osal_event_hdr_t *pMsg );
 static void peripheralStateNotificationCB( gaprole_States_t newState );
 
-static void readIrTempData( void );
-static void readHumData( void );
+//static void readIrTempData( void );
+//static void readHumData( void );
 static void readAccData( void );
 static void readMagData( void );
-static void readBarData( void );
-static void readBarCalibration( void );
+//static void readBarData( void );
+//static void readBarCalibration( void );
 static void readGyroData( void );
 static void readQuatData( void );
 static void readQuatDataIMU( void );
 static void updateQuatData( void );
 
-static void barometerChangeCB( uint8 paramID );
-static void irTempChangeCB( uint8 paramID );
+//static void barometerChangeCB( uint8 paramID );
+//static void irTempChangeCB( uint8 paramID );
 static void accelChangeCB( uint8 paramID );
-static void humidityChangeCB( uint8 paramID);
+//static void humidityChangeCB( uint8 paramID);
 static void magnetometerChangeCB( uint8 paramID );
 static void gyroChangeCB( uint8 paramID );
 static void quatChangeCB( uint8 paramID );
@@ -323,25 +323,25 @@ static gapBondCBs_t sensorTag_BondMgrCBs =
 };
 
 // Simple GATT Profile Callbacks
-static sensorCBs_t sensorTag_BarometerCBs =
-{
-  barometerChangeCB,        // Characteristic value change callback
-};
+//static sensorCBs_t sensorTag_BarometerCBs =
+//{
+//  barometerChangeCB,        // Characteristic value change callback
+//};
 
-static sensorCBs_t sensorTag_IrTempCBs =
-{
-  irTempChangeCB,           // Characteristic value change callback
-};
+//static sensorCBs_t sensorTag_IrTempCBs =
+//{
+//  irTempChangeCB,           // Characteristic value change callback
+//};
 
 static sensorCBs_t sensorTag_AccelCBs =
 {
   accelChangeCB,            // Characteristic value change callback
 };
 
-static sensorCBs_t sensorTag_HumidCBs =
-{
-  humidityChangeCB,         // Characteristic value change callback
-};
+//static sensorCBs_t sensorTag_HumidCBs =
+//{
+//  humidityChangeCB,         // Characteristic value change callback
+//};
 
 static sensorCBs_t sensorTag_MagnetometerCBs =
 {
@@ -457,19 +457,19 @@ void SensorTag_Init( uint8 task_id )
 
 
   // Add services
-//  GGS_AddService( GATT_ALL_SERVICES );            // GAP
-//  GATTServApp_AddService( GATT_ALL_SERVICES );    // GATT attributes
-//  DevInfo_AddService();                           // Device Information Service
+//    GGS_AddService( GATT_ALL_SERVICES );            // GAP
+//    GATTServApp_AddService( GATT_ALL_SERVICES );    // GATT attributes
+//    DevInfo_AddService();                           // Device Information Service
 //  IRTemp_AddService (GATT_ALL_SERVICES );         // IR Temperature Service
-//  Accel_AddService (GATT_ALL_SERVICES );          // Accelerometer Service
+//    Accel_AddService (GATT_ALL_SERVICES );          // Accelerometer Service
 //  Humidity_AddService (GATT_ALL_SERVICES );       // Humidity Service
-//  Magnetometer_AddService( GATT_ALL_SERVICES );   // Magnetometer Service
+//    Magnetometer_AddService( GATT_ALL_SERVICES );   // Magnetometer Service
 //  Barometer_AddService( GATT_ALL_SERVICES );      // Barometer Service
-//  Gyro_AddService( GATT_ALL_SERVICES );           // Gyro Service
-  Quat_AddService( GATT_ALL_SERVICES );           // Quaternion Service
-//  SK_AddService( GATT_ALL_SERVICES );             // Simple Keys Profile
-//  Test_AddService( GATT_ALL_SERVICES );           // Test Profile
-//  CcService_AddService( GATT_ALL_SERVICES );      // Connection Control Service
+//    Gyro_AddService( GATT_ALL_SERVICES );           // Gyro Service
+    Quat_AddService( GATT_ALL_SERVICES );           // Quaternion Service
+//    SK_AddService( GATT_ALL_SERVICES );             // Simple Keys Profile
+//    Test_AddService( GATT_ALL_SERVICES );           // Test Profile
+//    CcService_AddService( GATT_ALL_SERVICES );      // Connection Control Service
 
 #if defined FEATURE_OAD
   VOID OADTarget_AddService();                    // OAD Profile
@@ -493,11 +493,11 @@ void SensorTag_Init( uint8 task_id )
   HalGyroInit();
 
   // Register callbacks with profile
-  VOID IRTemp_RegisterAppCBs( &sensorTag_IrTempCBs );
+  //VOID IRTemp_RegisterAppCBs( &sensorTag_IrTempCBs );
   VOID Magnetometer_RegisterAppCBs( &sensorTag_MagnetometerCBs );
   VOID Accel_RegisterAppCBs( &sensorTag_AccelCBs );
-  VOID Humidity_RegisterAppCBs( &sensorTag_HumidCBs );
-  VOID Barometer_RegisterAppCBs( &sensorTag_BarometerCBs );
+  //VOID Humidity_RegisterAppCBs( &sensorTag_HumidCBs );
+  //VOID Barometer_RegisterAppCBs( &sensorTag_BarometerCBs );
   VOID Gyro_RegisterAppCBs( &sensorTag_GyroCBs );
   VOID Quat_RegisterAppCBs( &sensorTag_QuatCBs );
   VOID Test_RegisterAppCBs( &sensorTag_TestCBs );
@@ -571,31 +571,31 @@ uint16 SensorTag_ProcessEvent( uint8 task_id, uint16 events )
   //////////////////////////
   //    IR TEMPERATURE    //
   //////////////////////////
-  if ( events & ST_IRTEMPERATURE_READ_EVT )
-  {
-    if ( irTempEnabled )
-    {
-      if (HalIRTempStatus() == TMP006_DATA_READY)
-      {
-        readIrTempData();
-        osal_start_timerEx( sensorTag_TaskID, ST_IRTEMPERATURE_READ_EVT, sensorTmpPeriod-TEMP_MEAS_DELAY );
-      }
-      else if (HalIRTempStatus() == TMP006_OFF)
-      {
-        HalIRTempTurnOn();
-        osal_start_timerEx( sensorTag_TaskID, ST_IRTEMPERATURE_READ_EVT, TEMP_MEAS_DELAY );
-      }
-    }
-    else
-    {
-      //Turn off Temperatur sensor
-      VOID HalIRTempTurnOff();
-      VOID resetCharacteristicValue(IRTEMPERATURE_SERV_UUID,SENSOR_DATA,0,IRTEMPERATURE_DATA_LEN);
-      VOID resetCharacteristicValue(IRTEMPERATURE_SERV_UUID,SENSOR_CONF,ST_CFG_SENSOR_DISABLE,sizeof ( uint8 ));
-    }
-
-    return (events ^ ST_IRTEMPERATURE_READ_EVT);
-  }
+//  if ( events & ST_IRTEMPERATURE_READ_EVT )
+//  {
+//    if ( irTempEnabled )
+//    {
+//      if (HalIRTempStatus() == TMP006_DATA_READY)
+//      {
+//        readIrTempData();
+//        osal_start_timerEx( sensorTag_TaskID, ST_IRTEMPERATURE_READ_EVT, sensorTmpPeriod-TEMP_MEAS_DELAY );
+//      }
+//      else if (HalIRTempStatus() == TMP006_OFF)
+//      {
+//        HalIRTempTurnOn();
+//        osal_start_timerEx( sensorTag_TaskID, ST_IRTEMPERATURE_READ_EVT, TEMP_MEAS_DELAY );
+//      }
+//    }
+//    else
+//    {
+//      //Turn off Temperatur sensor
+//      VOID HalIRTempTurnOff();
+//      VOID resetCharacteristicValue(IRTEMPERATURE_SERV_UUID,SENSOR_DATA,0,IRTEMPERATURE_DATA_LEN);
+//      VOID resetCharacteristicValue(IRTEMPERATURE_SERV_UUID,SENSOR_CONF,ST_CFG_SENSOR_DISABLE,sizeof ( uint8 ));
+//    }
+//
+//    return (events ^ ST_IRTEMPERATURE_READ_EVT);
+//  }
 
   //////////////////////////
   //    Accelerometer     //
@@ -619,31 +619,31 @@ uint16 SensorTag_ProcessEvent( uint8 task_id, uint16 events )
   //////////////////////////
   //      Humidity        //
   //////////////////////////
-  if ( events & ST_HUMIDITY_SENSOR_EVT )
-  {
-    if (humiEnabled)
-    {
-      HalHumiExecMeasurementStep(humiState);
-      if (humiState == 2)
-      {
-        readHumData();
-        humiState = 0;
-        osal_start_timerEx( sensorTag_TaskID, ST_HUMIDITY_SENSOR_EVT, sensorHumPeriod );
-      }
-      else
-      {
-        humiState++;
-        osal_start_timerEx( sensorTag_TaskID, ST_HUMIDITY_SENSOR_EVT, HUM_FSM_PERIOD );
-      }
-    }
-    else
-    {
-      resetCharacteristicValue( HUMIDITY_SERV_UUID, SENSOR_DATA, 0, HUMIDITY_DATA_LEN);
-      resetCharacteristicValue( HUMIDITY_SERV_UUID, SENSOR_CONF, ST_CFG_SENSOR_DISABLE, sizeof ( uint8 ));
-    }
-
-    return (events ^ ST_HUMIDITY_SENSOR_EVT);
-  }
+//  if ( events & ST_HUMIDITY_SENSOR_EVT )
+//  {
+//    if (humiEnabled)
+//    {
+//      HalHumiExecMeasurementStep(humiState);
+//      if (humiState == 2)
+//      {
+//        readHumData();
+//        humiState = 0;
+//        osal_start_timerEx( sensorTag_TaskID, ST_HUMIDITY_SENSOR_EVT, sensorHumPeriod );
+//      }
+//      else
+//      {
+//        humiState++;
+//        osal_start_timerEx( sensorTag_TaskID, ST_HUMIDITY_SENSOR_EVT, HUM_FSM_PERIOD );
+//      }
+//    }
+//    else
+//    {
+//      resetCharacteristicValue( HUMIDITY_SERV_UUID, SENSOR_DATA, 0, HUMIDITY_DATA_LEN);
+//      resetCharacteristicValue( HUMIDITY_SERV_UUID, SENSOR_CONF, ST_CFG_SENSOR_DISABLE, sizeof ( uint8 ));
+//    }
+//
+//    return (events ^ ST_HUMIDITY_SENSOR_EVT);
+//  }
 
   //////////////////////////
   //      Magnetometer    //
@@ -676,32 +676,32 @@ uint16 SensorTag_ProcessEvent( uint8 task_id, uint16 events )
   //////////////////////////
   //        Barometer     //
   //////////////////////////
-  if ( events & ST_BAROMETER_SENSOR_EVT )
-  {
-    if (barEnabled)
-    {
-      if (barBusy)
-      {
-        barBusy = FALSE;
-        readBarData();
-        osal_start_timerEx( sensorTag_TaskID, ST_BAROMETER_SENSOR_EVT, sensorBarPeriod );
-      }
-      else
-      {
-        barBusy = TRUE;
-        HalBarStartMeasurement();
-        osal_start_timerEx( sensorTag_TaskID, ST_BAROMETER_SENSOR_EVT, BAR_FSM_PERIOD );
-      }
-    }
-    else
-    {
-      resetCharacteristicValue( BAROMETER_SERV_UUID, SENSOR_DATA, 0, BAROMETER_DATA_LEN);
-      resetCharacteristicValue( BAROMETER_SERV_UUID, SENSOR_CONF, ST_CFG_SENSOR_DISABLE, sizeof ( uint8 ));
-      resetCharacteristicValue( BAROMETER_SERV_UUID, SENSOR_CALB, 0, BAROMETER_CALI_LEN);
-    }
-
-    return (events ^ ST_BAROMETER_SENSOR_EVT);
-  }
+//  if ( events & ST_BAROMETER_SENSOR_EVT )
+//  {
+//    if (barEnabled)
+//    {
+//      if (barBusy)
+//      {
+//        barBusy = FALSE;
+//        readBarData();
+//        osal_start_timerEx( sensorTag_TaskID, ST_BAROMETER_SENSOR_EVT, sensorBarPeriod );
+//      }
+//      else
+//      {
+//        barBusy = TRUE;
+//        HalBarStartMeasurement();
+//        osal_start_timerEx( sensorTag_TaskID, ST_BAROMETER_SENSOR_EVT, BAR_FSM_PERIOD );
+//      }
+//    }
+//    else
+//    {
+//      resetCharacteristicValue( BAROMETER_SERV_UUID, SENSOR_DATA, 0, BAROMETER_DATA_LEN);
+//      resetCharacteristicValue( BAROMETER_SERV_UUID, SENSOR_CONF, ST_CFG_SENSOR_DISABLE, sizeof ( uint8 ));
+//      resetCharacteristicValue( BAROMETER_SERV_UUID, SENSOR_CALB, 0, BAROMETER_CALI_LEN);
+//    }
+//
+//    return (events ^ ST_BAROMETER_SENSOR_EVT);
+//  }
 
   //////////////////////////
   //      Gyroscope       //
@@ -995,11 +995,11 @@ static void sensorTag_HandleKeys( uint8 shift, uint8 keys )
  */
 static void resetSensorSetup (void)
 {
-  if (HalIRTempStatus()!=TMP006_OFF || irTempEnabled)
-  {
-    HalIRTempTurnOff();
-    irTempEnabled = FALSE;
-  }
+//  if (HalIRTempStatus()!=TMP006_OFF || irTempEnabled)
+//  {
+//    HalIRTempTurnOff();
+//    irTempEnabled = FALSE;
+//  }
 
   if (accConfig != ST_CFG_SENSOR_DISABLE)
   {
@@ -1018,17 +1018,17 @@ static void resetSensorSetup (void)
     gyroEnabled = FALSE;
   }
 
-  if (barEnabled)
-  {
-    HalBarInit();
-    barEnabled = FALSE;
-  }
+//  if (barEnabled)
+//  {
+//    HalBarInit();
+//    barEnabled = FALSE;
+//  }
 
-  if (humiEnabled)
-  {
-    HalHumiInit();
-    humiEnabled = FALSE;
-  }
+//  if (humiEnabled)
+//  {
+//    HalHumiInit();
+//    humiEnabled = FALSE;
+//  }
 
   // Reset internal states
   sensorGyroAxes = 0;
@@ -1145,15 +1145,15 @@ static void readMagData( void )
  *
  * @return  none
  */
-static void readHumData(void)
-{
-  uint8 hData[HUMIDITY_DATA_LEN];
-
-  if (HalHumiReadMeasurement(hData))
-  {
-    Humidity_SetParameter( SENSOR_DATA, HUMIDITY_DATA_LEN, hData);
-  }
-}
+//static void readHumData(void)
+//{
+//  uint8 hData[HUMIDITY_DATA_LEN];
+//
+//  if (HalHumiReadMeasurement(hData))
+//  {
+//    Humidity_SetParameter( SENSOR_DATA, HUMIDITY_DATA_LEN, hData);
+//  }
+//}
 
 /*********************************************************************
  * @fn      readBarData
@@ -1164,15 +1164,15 @@ static void readHumData(void)
  *
  * @return  none
  */
-static void readBarData( void )
-{
-  uint8 bData[BAROMETER_DATA_LEN];
-
-  if (HalBarReadMeasurement(bData))
-  {
-    Barometer_SetParameter( SENSOR_DATA, BAROMETER_DATA_LEN, bData);
-  }
-}
+//static void readBarData( void )
+//{
+//  uint8 bData[BAROMETER_DATA_LEN];
+//
+//  if (HalBarReadMeasurement(bData))
+//  {
+//    Barometer_SetParameter( SENSOR_DATA, BAROMETER_DATA_LEN, bData);
+//  }
+//}
 
 /*********************************************************************
  * @fn      readBarCalibration
@@ -1183,17 +1183,17 @@ static void readBarData( void )
  *
  * @return  none
  */
-static void readBarCalibration( void )
-{
-  uint8* cData = osal_mem_alloc(BAROMETER_CALI_LEN);
-
-  if (cData != NULL )
-  {
-    HalBarReadCalibration(cData);
-    Barometer_SetParameter( SENSOR_CALB, BAROMETER_CALI_LEN, cData);
-    osal_mem_free(cData);
-  }
-}
+//static void readBarCalibration( void )
+//{
+//  uint8* cData = osal_mem_alloc(BAROMETER_CALI_LEN);
+//
+//  if (cData != NULL )
+//  {
+//    HalBarReadCalibration(cData);
+//    Barometer_SetParameter( SENSOR_CALB, BAROMETER_CALI_LEN, cData);
+//    osal_mem_free(cData);
+//  }
+//}
 
 /*********************************************************************
  * @fn      readIrTempData
@@ -1204,15 +1204,15 @@ static void readBarCalibration( void )
  *
  * @return  none
  */
-static void readIrTempData( void )
-{
-  uint8 tData[IRTEMPERATURE_DATA_LEN];
-
-  if (HalIRTempRead(tData))
-  {
-    IRTemp_SetParameter( SENSOR_DATA, IRTEMPERATURE_DATA_LEN, tData);
-  }
-}
+//static void readIrTempData( void )
+//{
+//  uint8 tData[IRTEMPERATURE_DATA_LEN];
+//
+//  if (HalIRTempRead(tData))
+//  {
+//    IRTemp_SetParameter( SENSOR_DATA, IRTEMPERATURE_DATA_LEN, tData);
+//  }
+//}
 
 /*********************************************************************
  * @fn      readGyroData
@@ -1401,52 +1401,52 @@ static void readQuatDataIMU( void )
  *
  * @return  none
  */
-static void barometerChangeCB( uint8 paramID )
-{
-  uint8 newValue;
-
-  switch( paramID )
-  {
-    case SENSOR_CONF:
-      Barometer_GetParameter( SENSOR_CONF, &newValue );
-
-      switch ( newValue)
-      {
-      case ST_CFG_SENSOR_DISABLE:
-        if (barEnabled)
-        {
-          barEnabled = FALSE;
-          osal_set_event( sensorTag_TaskID, ST_BAROMETER_SENSOR_EVT);
-        }
-        break;
-
-      case ST_CFG_SENSOR_ENABLE:
-        if(!barEnabled)
-        {
-          barEnabled = TRUE;
-          osal_set_event( sensorTag_TaskID, ST_BAROMETER_SENSOR_EVT);
-        }
-        break;
-
-      case ST_CFG_CALIBRATE:
-        readBarCalibration();
-        break;
-
-      default:
-        break;
-      }
-      break;
-
-  case SENSOR_PERI:
-      Barometer_GetParameter( SENSOR_PERI, &newValue );
-      sensorBarPeriod = newValue*SENSOR_PERIOD_RESOLUTION;
-      break;
-
-    default:
-      // should not get here!
-      break;
-  }
-}
+//static void barometerChangeCB( uint8 paramID )
+//{
+//  uint8 newValue;
+//
+//  switch( paramID )
+//  {
+//    case SENSOR_CONF:
+//      Barometer_GetParameter( SENSOR_CONF, &newValue );
+//
+//      switch ( newValue)
+//      {
+//      case ST_CFG_SENSOR_DISABLE:
+//        if (barEnabled)
+//        {
+//          barEnabled = FALSE;
+//          osal_set_event( sensorTag_TaskID, ST_BAROMETER_SENSOR_EVT);
+//        }
+//        break;
+//
+//      case ST_CFG_SENSOR_ENABLE:
+//        if(!barEnabled)
+//        {
+//          barEnabled = TRUE;
+//          osal_set_event( sensorTag_TaskID, ST_BAROMETER_SENSOR_EVT);
+//        }
+//        break;
+//
+//      case ST_CFG_CALIBRATE:
+//        readBarCalibration();
+//        break;
+//
+//      default:
+//        break;
+//      }
+//      break;
+//
+//  case SENSOR_PERI:
+//      Barometer_GetParameter( SENSOR_PERI, &newValue );
+//      sensorBarPeriod = newValue*SENSOR_PERIOD_RESOLUTION;
+//      break;
+//
+//    default:
+//      // should not get here!
+//      break;
+//  }
+//}
 
 /*********************************************************************
  * @fn      irTempChangeCB
@@ -1457,43 +1457,43 @@ static void barometerChangeCB( uint8 paramID )
  *
  * @return  none
  */
-static void irTempChangeCB( uint8 paramID )
-{
-  uint8 newValue;
-  
-  switch (paramID) {
-  case SENSOR_CONF:
-    IRTemp_GetParameter( SENSOR_CONF, &newValue );
-    
-    if ( newValue == ST_CFG_SENSOR_DISABLE)
-    {
-      // Put sensor to sleep
-      if (irTempEnabled)
-      {
-        irTempEnabled = FALSE;
-        osal_set_event( sensorTag_TaskID, ST_IRTEMPERATURE_READ_EVT);
-      }
-    }
-    else if (newValue == ST_CFG_SENSOR_ENABLE)
-    {
-      if (!irTempEnabled)
-      {
-        irTempEnabled = TRUE;
-        osal_set_event( sensorTag_TaskID,ST_IRTEMPERATURE_READ_EVT);
-      }
-    }
-    break;
-    
-  case SENSOR_PERI:
-    IRTemp_GetParameter( SENSOR_PERI, &newValue );
-    sensorTmpPeriod = newValue*SENSOR_PERIOD_RESOLUTION;
-    break;
-    
-  default:
-    // Should not get here
-    break;
-  }
-}
+//static void irTempChangeCB( uint8 paramID )
+//{
+//  uint8 newValue;
+//  
+//  switch (paramID) {
+//  case SENSOR_CONF:
+//    IRTemp_GetParameter( SENSOR_CONF, &newValue );
+//    
+//    if ( newValue == ST_CFG_SENSOR_DISABLE)
+//    {
+//      // Put sensor to sleep
+//      if (irTempEnabled)
+//      {
+//        irTempEnabled = FALSE;
+//        osal_set_event( sensorTag_TaskID, ST_IRTEMPERATURE_READ_EVT);
+//      }
+//    }
+//    else if (newValue == ST_CFG_SENSOR_ENABLE)
+//    {
+//      if (!irTempEnabled)
+//      {
+//        irTempEnabled = TRUE;
+//        osal_set_event( sensorTag_TaskID,ST_IRTEMPERATURE_READ_EVT);
+//      }
+//    }
+//    break;
+//    
+//  case SENSOR_PERI:
+//    IRTemp_GetParameter( SENSOR_PERI, &newValue );
+//    sensorTmpPeriod = newValue*SENSOR_PERIOD_RESOLUTION;
+//    break;
+//    
+//  default:
+//    // Should not get here
+//    break;
+//  }
+//}
 
 /*********************************************************************
  * @fn      accelChangeCB
@@ -1601,45 +1601,45 @@ static void magnetometerChangeCB( uint8 paramID )
  *
  * @return  none
  */
-static void humidityChangeCB( uint8 paramID )
-{
-  uint8 newValue;
-  
-  switch ( paramID)
-  {
-  case  SENSOR_CONF:
-    Humidity_GetParameter( SENSOR_CONF, &newValue );
-    
-    if ( newValue == ST_CFG_SENSOR_DISABLE)
-    {
-      if (humiEnabled)
-      {
-        humiEnabled = FALSE;
-        osal_set_event( sensorTag_TaskID, ST_HUMIDITY_SENSOR_EVT);
-      }
-    }
-    
-    if ( newValue == ST_CFG_SENSOR_ENABLE )
-    {
-      if (!humiEnabled)
-      {
-        humiEnabled = TRUE;
-        humiState = 0;
-        osal_set_event( sensorTag_TaskID, ST_HUMIDITY_SENSOR_EVT);
-      }
-    }
-    break;
-    
-  case SENSOR_PERI:
-    Humidity_GetParameter( SENSOR_PERI, &newValue );
-    sensorHumPeriod = newValue*SENSOR_PERIOD_RESOLUTION;
-    break;
-    
-  default:
-    // Should not get here
-    break;
-  }
-}
+//static void humidityChangeCB( uint8 paramID )
+//{
+//  uint8 newValue;
+//  
+//  switch ( paramID)
+//  {
+//  case  SENSOR_CONF:
+//    Humidity_GetParameter( SENSOR_CONF, &newValue );
+//    
+//    if ( newValue == ST_CFG_SENSOR_DISABLE)
+//    {
+//      if (humiEnabled)
+//      {
+//        humiEnabled = FALSE;
+//        osal_set_event( sensorTag_TaskID, ST_HUMIDITY_SENSOR_EVT);
+//      }
+//    }
+//    
+//    if ( newValue == ST_CFG_SENSOR_ENABLE )
+//    {
+//      if (!humiEnabled)
+//      {
+//        humiEnabled = TRUE;
+//        humiState = 0;
+//        osal_set_event( sensorTag_TaskID, ST_HUMIDITY_SENSOR_EVT);
+//      }
+//    }
+//    break;
+//    
+//  case SENSOR_PERI:
+//    Humidity_GetParameter( SENSOR_PERI, &newValue );
+//    sensorHumPeriod = newValue*SENSOR_PERIOD_RESOLUTION;
+//    break;
+//    
+//  default:
+//    // Should not get here
+//    break;
+//  }
+//}
 
 /*********************************************************************
  * @fn      gyroChangeCB
@@ -1903,9 +1903,9 @@ static void resetCharacteristicValue(uint16 servUuid, uint8 paramID, uint8 value
 
   switch(servUuid)
   {
-    case IRTEMPERATURE_SERV_UUID:
-      IRTemp_SetParameter( paramID, paramLen, pData);
-      break;
+//    case IRTEMPERATURE_SERV_UUID:
+//      IRTemp_SetParameter( paramID, paramLen, pData);
+//      break;
 
     case ACCELEROMETER_SERV_UUID:
       Accel_SetParameter( paramID, paramLen, pData);
@@ -1915,13 +1915,13 @@ static void resetCharacteristicValue(uint16 servUuid, uint8 paramID, uint8 value
       Magnetometer_SetParameter( paramID, paramLen, pData);
       break;
 
-    case HUMIDITY_SERV_UUID:
-      Humidity_SetParameter( paramID, paramLen, pData);
-      break;
-
-    case BAROMETER_SERV_UUID:
-      Barometer_SetParameter( paramID, paramLen, pData);
-      break;
+//    case HUMIDITY_SERV_UUID:
+//      Humidity_SetParameter( paramID, paramLen, pData);
+//      break;
+//
+//    case BAROMETER_SERV_UUID:
+//      Barometer_SetParameter( paramID, paramLen, pData);
+//      break;
 
     case GYROSCOPE_SERV_UUID:
       Gyro_SetParameter( paramID, paramLen, pData);
@@ -1948,25 +1948,25 @@ static void resetCharacteristicValue(uint16 servUuid, uint8 paramID, uint8 value
  */
 static void resetCharacteristicValues( void )
 {
-  resetCharacteristicValue( IRTEMPERATURE_SERV_UUID, SENSOR_DATA, 0, IRTEMPERATURE_DATA_LEN);
-  resetCharacteristicValue( IRTEMPERATURE_SERV_UUID, SENSOR_CONF, ST_CFG_SENSOR_DISABLE, sizeof ( uint8 ));
-  resetCharacteristicValue( IRTEMPERATURE_SERV_UUID, SENSOR_PERI, TEMP_DEFAULT_PERIOD / SENSOR_PERIOD_RESOLUTION, sizeof ( uint8 ));
+//  resetCharacteristicValue( IRTEMPERATURE_SERV_UUID, SENSOR_DATA, 0, IRTEMPERATURE_DATA_LEN);
+//  resetCharacteristicValue( IRTEMPERATURE_SERV_UUID, SENSOR_CONF, ST_CFG_SENSOR_DISABLE, sizeof ( uint8 ));
+//  resetCharacteristicValue( IRTEMPERATURE_SERV_UUID, SENSOR_PERI, TEMP_DEFAULT_PERIOD / SENSOR_PERIOD_RESOLUTION, sizeof ( uint8 ));
 
   resetCharacteristicValue( ACCELEROMETER_SERV_UUID, SENSOR_DATA, 0, ACCELEROMETER_DATA_LEN );
   resetCharacteristicValue( ACCELEROMETER_SERV_UUID, SENSOR_CONF, ST_CFG_SENSOR_DISABLE, sizeof ( uint8 ));
   resetCharacteristicValue( ACCELEROMETER_SERV_UUID, SENSOR_PERI, ACC_DEFAULT_PERIOD / SENSOR_PERIOD_RESOLUTION, sizeof ( uint8 ));
 
-  resetCharacteristicValue( HUMIDITY_SERV_UUID, SENSOR_DATA, 0, HUMIDITY_DATA_LEN);
-  resetCharacteristicValue( HUMIDITY_SERV_UUID, SENSOR_CONF, ST_CFG_SENSOR_DISABLE, sizeof ( uint8 ));
-  resetCharacteristicValue( HUMIDITY_SERV_UUID, SENSOR_PERI, HUM_DEFAULT_PERIOD / SENSOR_PERIOD_RESOLUTION, sizeof ( uint8 ));
+//  resetCharacteristicValue( HUMIDITY_SERV_UUID, SENSOR_DATA, 0, HUMIDITY_DATA_LEN);
+//  resetCharacteristicValue( HUMIDITY_SERV_UUID, SENSOR_CONF, ST_CFG_SENSOR_DISABLE, sizeof ( uint8 ));
+//  resetCharacteristicValue( HUMIDITY_SERV_UUID, SENSOR_PERI, HUM_DEFAULT_PERIOD / SENSOR_PERIOD_RESOLUTION, sizeof ( uint8 ));
 
   resetCharacteristicValue( MAGNETOMETER_SERV_UUID, SENSOR_DATA, 0, MAGNETOMETER_DATA_LEN);
   resetCharacteristicValue( MAGNETOMETER_SERV_UUID, SENSOR_CONF, ST_CFG_SENSOR_DISABLE, sizeof ( uint8 ));
   resetCharacteristicValue( MAGNETOMETER_SERV_UUID, SENSOR_PERI, MAG_DEFAULT_PERIOD / SENSOR_PERIOD_RESOLUTION, sizeof ( uint8 ));
 
-  resetCharacteristicValue( BAROMETER_SERV_UUID, SENSOR_DATA, 0, BAROMETER_DATA_LEN);
-  resetCharacteristicValue( BAROMETER_SERV_UUID, SENSOR_CONF, ST_CFG_SENSOR_DISABLE, sizeof ( uint8 ));
-  resetCharacteristicValue( BAROMETER_SERV_UUID, SENSOR_PERI, BAR_DEFAULT_PERIOD / SENSOR_PERIOD_RESOLUTION, sizeof ( uint8 ));
+//  resetCharacteristicValue( BAROMETER_SERV_UUID, SENSOR_DATA, 0, BAROMETER_DATA_LEN);
+//  resetCharacteristicValue( BAROMETER_SERV_UUID, SENSOR_CONF, ST_CFG_SENSOR_DISABLE, sizeof ( uint8 ));
+//  resetCharacteristicValue( BAROMETER_SERV_UUID, SENSOR_PERI, BAR_DEFAULT_PERIOD / SENSOR_PERIOD_RESOLUTION, sizeof ( uint8 ));
 
   resetCharacteristicValue( GYROSCOPE_SERV_UUID, SENSOR_DATA, 0, GYROSCOPE_DATA_LEN);
   resetCharacteristicValue( GYROSCOPE_SERV_UUID, SENSOR_CONF, ST_CFG_SENSOR_DISABLE, sizeof( uint8 ));

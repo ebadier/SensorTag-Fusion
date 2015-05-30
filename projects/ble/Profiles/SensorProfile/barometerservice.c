@@ -49,7 +49,7 @@
 #include "gattservapp.h"
 #include "gapbondmgr.h"
 
-#include "barometerservice.h"
+//#include "barometerservice.h"
 #include "st_util.h"
 
 /*********************************************************************

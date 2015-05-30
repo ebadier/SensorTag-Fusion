@@ -41,7 +41,7 @@
 *                                          Includes
 * ------------------------------------------------------------------------------------------------
 */
-#include "hal_irtemp.h"
+//#include "hal_irtemp.h"
 #include "hal_i2c.h"
 #include "hal_sensor.h"
 

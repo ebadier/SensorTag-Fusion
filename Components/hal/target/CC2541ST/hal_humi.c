@@ -42,7 +42,7 @@
 *                                          Includes
 * ------------------------------------------------------------------------------------------------
 */
-#include "hal_humi.h"
+//#include "hal_humi.h"
 #include "hal_sensor.h"
 #include "hal_i2c.h"
 

@@ -46,7 +46,7 @@
 #include "gatt_uuid.h"
 #include "gattservapp.h"
 
-#include "irtempservice.h"
+//#include "irtempservice.h"
 #include "st_util.h"
 
 /*********************************************************************

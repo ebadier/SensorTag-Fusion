@@ -46,7 +46,7 @@
 #include "gatt_uuid.h"
 #include "gattservapp.h"
 
-#include "humidityservice.h"
+//#include "humidityservice.h"
 #include "st_util.h"
 
 /*********************************************************************
