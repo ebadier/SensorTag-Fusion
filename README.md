@@ -1,4 +1,4 @@
 SensorTag-Fusion
 ================
 
-TI Sensortag firmware running a fusion algorithm at 250Hz that broadcasts the quaternion.
+TI Sensortag firmware running a fusion algorithm at 100Hz that broadcasts the quaternion.

@@ -13,10 +13,12 @@
 #ifndef MadgwickAHRS_h
 #define MadgwickAHRS_h
 
+#define AHRS_SAMPLEPERIOD_MS 10 // 1 sample every X milliseconds
+
 //----------------------------------------------------------------------------------------------------
 // Variable declaration
 
-extern volatile float beta;				// algorithm gain
+extern volatile float beta;		// algorithm gain
 extern volatile float q0, q1, q2, q3;	// quaternion of sensor frame relative to auxiliary frame
 
 //---------------------------------------------------------------------------------------------------
