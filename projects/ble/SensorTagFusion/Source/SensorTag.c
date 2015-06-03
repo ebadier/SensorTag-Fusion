@@ -265,6 +265,7 @@ static uint16 sensorAccPeriod = ACC_DEFAULT_PERIOD;
 //static uint16 sensorBarPeriod = BAR_DEFAULT_PERIOD;
 static uint16 sensorGyrPeriod = GYRO_DEFAULT_PERIOD;
 static uint16 sensorQuatPeriod = QUAT_DEFAULT_PERIOD;
+static float q0 = 1.0f, q1 = 0.0f, q2 = 0.0f, q3 = 0.0f;
 
 static uint8  sensorGyroAxes = 0;
 static bool   sensorGyroUpdateAxes = FALSE;
@@ -797,8 +798,8 @@ uint16 SensorTag_ProcessEvent( uint8 task_id, uint16 events )
         }
         else if (statusM!=MAG3110_DATA_READY)
         {
-        readQuatDataIMU();
-        osal_start_timerEx( sensorTag_TaskID, ST_QUATERNION_SENSOR_EVT, sensorQuatPeriod);
+          readQuatDataIMU();
+          osal_start_timerEx( sensorTag_TaskID, ST_QUATERNION_SENSOR_EVT, sensorQuatPeriod);
         }
       }
     }
@@ -1367,8 +1368,7 @@ static void readQuatData( void )
     float mx=calcXValueM(mData);
     float my=calcYValueM(mData);
     float mz=calcZValueM(mData);
-    MadgwickAHRSupdate(gx, gy, gz, ax, ay, az, mx, my, mz);
-    
+    MadgwickAHRSupdate(gx, gy, gz, ax, ay, az, mx, my, mz, &q0, &q1, &q2, &q3);
   }
 }
 
@@ -1386,7 +1386,7 @@ static void readQuatDataIMU( void )
     float ax=calcXValueA(aData);
     float ay=calcYValueA(aData);
     float az=calcZValueA(aData);
-    MadgwickAHRSupdateIMU(gx, gy, gz, ax, ay, az);
+    MadgwickAHRSupdateIMU(gx, gy, gz, ax, ay, az, &q0, &q1, &q2, &q3);
 
   }
 }

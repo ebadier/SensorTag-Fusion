@@ -15,17 +15,11 @@
 
 #define AHRS_SAMPLEPERIOD_MS 10 // 1 sample every X milliseconds
 
-//----------------------------------------------------------------------------------------------------
-// Variable declaration
-
-extern volatile float beta;		// algorithm gain
-extern volatile float q0, q1, q2, q3;	// quaternion of sensor frame relative to auxiliary frame
-
 //---------------------------------------------------------------------------------------------------
 // Function declarations
 
-void MadgwickAHRSupdate(float gx, float gy, float gz, float ax, float ay, float az, float mx, float my, float mz);
-void MadgwickAHRSupdateIMU(float gx, float gy, float gz, float ax, float ay, float az);
+void MadgwickAHRSupdate(float gx, float gy, float gz, float ax, float ay, float az, float mx, float my, float mz, float* q0out, float* q1out, float* q2out, float* q3out);
+void MadgwickAHRSupdateIMU(float gx, float gy, float gz, float ax, float ay, float az, float* q0out, float* q1out, float* q2out, float* q3out);
 
 #endif
 //=====================================================================================================

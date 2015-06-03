@@ -20,13 +20,12 @@
 
 //---------------------------------------------------------------------------------------------------
 // Definitions
-#define betaDef		0.1f		// 2 * proportional gain
+#define beta		0.1f // 2 * proportional gain
 
 //---------------------------------------------------------------------------------------------------
 // Variable definitions
 static const float samplePeriod = (float)AHRS_SAMPLEPERIOD_MS * 0.001f; // in Seconds
-volatile float beta = betaDef;					// 2 * proportional gain (Kp)
-volatile float q0 = 1.0f, q1 = 0.0f, q2 = 0.0f, q3 = 0.0f;	// quaternion of sensor frame relative to auxiliary frame
+static float q0 = 1.0f, q1 = 0.0f, q2 = 0.0f, q3 = 0.0f;	// quaternion of sensor frame relative to auxiliary frame
 
 //---------------------------------------------------------------------------------------------------
 // Function declarations
@@ -39,7 +38,8 @@ float invSqrt(float x);
 //---------------------------------------------------------------------------------------------------
 // AHRS algorithm update
 
-void MadgwickAHRSupdate(float gx, float gy, float gz, float ax, float ay, float az, float mx, float my, float mz) {
+void MadgwickAHRSupdate(float gx, float gy, float gz, float ax, float ay, float az, float mx, float my, float mz, float* q0out, float* q1out, float* q2out, float* q3out) 
+{
 	float recipNorm;
 	float s0, s1, s2, s3;
 	float qDot1, qDot2, qDot3, qDot4;
@@ -48,7 +48,7 @@ void MadgwickAHRSupdate(float gx, float gy, float gz, float ax, float ay, float 
 
 	// Use IMU algorithm if magnetometer measurement invalid (avoids NaN in magnetometer normalisation)
 	if((mx == 0.0f) && (my == 0.0f) && (mz == 0.0f)) {
-		MadgwickAHRSupdateIMU(gx, gy, gz, ax, ay, az);
+		MadgwickAHRSupdateIMU(gx, gy, gz, ax, ay, az, q0out, q1out, q2out, q3out);
 		return;
 	}
 
@@ -133,12 +133,19 @@ void MadgwickAHRSupdate(float gx, float gy, float gz, float ax, float ay, float 
 	q1 *= recipNorm;
 	q2 *= recipNorm;
 	q3 *= recipNorm;
+        
+        // Set result
+        *q0out = q0;
+        *q1out = q1;
+        *q2out = q2;
+        *q3out = q3;
 }
 
 //---------------------------------------------------------------------------------------------------
 // IMU algorithm update
 
-void MadgwickAHRSupdateIMU(float gx, float gy, float gz, float ax, float ay, float az) {
+void MadgwickAHRSupdateIMU(float gx, float gy, float gz, float ax, float ay, float az, float* q0out, float* q1out, float* q2out, float* q3out) 
+{
 	float recipNorm;
 	float s0, s1, s2, s3;
 	float qDot1, qDot2, qDot3, qDot4;
@@ -204,6 +211,12 @@ void MadgwickAHRSupdateIMU(float gx, float gy, float gz, float ax, float ay, flo
 	q1 *= recipNorm;
 	q2 *= recipNorm;
 	q3 *= recipNorm;
+        
+        // Set result
+        *q0out = q0;
+        *q1out = q1;
+        *q2out = q2;
+        *q3out = q3;
 }
 
 //---------------------------------------------------------------------------------------------------
